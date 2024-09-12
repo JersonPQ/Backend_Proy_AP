@@ -13,6 +13,9 @@ INSERT INTO TiposNotificaciones (nombre_tipo_notificacion) VALUES ('Nuevo proyec
 INSERT INTO Usuarios (nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol)
 VALUES ('Admin Admin', '123456789', 'prueba@estudiantec.cr', 'Administración', 0, '12345678', '123456', 1);
 
+INSERT INTO Usuarios (nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol)
+VALUES ('Usuario Prueba', '987654321', 'prueba2@estudiantec.cr', 'Desarrollo', 0, '87654321', '123456', 2);
+
 -- Insertar proyectos
 INSERT INTO Proyectos (id_usuario, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id, imagenes_videos)
 VALUES (1, 'Proyecto de prueba', 'Descripción del proyecto de prueba', 1000, '2022-12-31', 1, 'https://via.placeholder.com/150');

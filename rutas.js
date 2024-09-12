@@ -15,13 +15,13 @@ import {
 // ---------------------------------- Consultas ----------------------------------
 
 // **************** RolUsuarios ****************
-app.get('/rolUsuarios', async (req, res) => {
+app.get('/getRolUsuarios', async (req, res) => {
     const rows = await getRolUsuarios()
     res.send(rows)
 })
 
 // **************** Usuarios ****************
-app.get('/usuarios', async (req, res) => {
+app.get('/getUsuarios', async (req, res) => {
     const rows = await getUsuarios()
     res.send(rows)
 })
