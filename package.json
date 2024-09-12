@@ -1,4 +1,10 @@
 {
+  "type": "module",
+  "main": "rutas.js",
+  "scripts": {
+    "dev": "nodemon rutas.js",
+    "start": "node rutas.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
