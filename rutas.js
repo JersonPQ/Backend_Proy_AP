@@ -3,7 +3,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors'; // Importa el middleware cors
 import {PORT} from "./config.js"
 import { 
-    getRolUsuarios
+    getRolUsuarios,
+    getUsuarios
  } from './database.js'
 
  const app = express();
