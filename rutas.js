@@ -20,6 +20,12 @@ app.get('/rolUsuarios', async (req, res) => {
     res.send(rows)
 })
 
+// **************** Usuarios ****************
+app.get('/usuarios', async (req, res) => {
+    const rows = await getUsuarios()
+    res.send(rows)
+})
+
 app.use((err, req, res, next) => {
     console.error(err.stack)
     res.status(500).send('Something broke!')
