@@ -15,7 +15,16 @@ const pool = mysql.createPool({
 // **************** RolUsuarios ****************
 export async function getRolUsuarios() {
     const query = "SELECT id, nombre_rol\
-                    FROM RolUsuarios"
+                    FROM RolUsuarios;"
+    const [rows] = await pool.query(query)
+    return rows
+}
+
+// **************** Usuarios ****************
+export async function getUsuarios() {
+    const query = "SELECT id, nombre_completo, correo_electronico, area_trabajo,\
+                    cartera_digital, telefono, contrasena, fecha_registro, rol, estado\
+                    FROM Usuarios;"
     const [rows] = await pool.query(query)
     return rows
 }
