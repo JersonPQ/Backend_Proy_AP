@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors'; // Importa el middleware cors
 import {PORT} from "./config.js"
 import { 
-    
+    getRolUsuarios
  } from './database.js'
 
  const app = express();
@@ -14,7 +14,11 @@ import {
  app.use(cors());
 // ---------------------------------- Consultas ----------------------------------
 
-
+// **************** RolUsuarios ****************
+app.get('/rolUsuarios', async (req, res) => {
+    const rows = await getRolUsuarios()
+    res.json(rows)
+})
 
 app.use((err, req, res, next) => {
     console.error(err.stack)

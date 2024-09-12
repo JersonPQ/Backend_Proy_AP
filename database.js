@@ -12,12 +12,10 @@ const pool = mysql.createPool({
 
 // ---------------------------------- Consultas ----------------------------------
 
-// **************** Proyectos ****************
-export async function consultarProyectos() {
-    const query = "SELECT P.id, P.nombreProyecto, P.recursosNecesarios, P.presupuesto, P.descripcion, \
-                    P.idEstadoProyecto, E.nombreEstado, P.fechaInicio, P.fechaFin, P.idPersonaResponsable, C.nombre, C.primerApellido, C.segundoApellido \
-                    FROM proyectos P inner join estadosProyectos E on P.idEstadoProyecto = E.id \
-                    inner join colaboradores C on P.idPersonaResponsable = C.id;"
+// **************** RolUsuarios ****************
+export async function getRolUsuarios() {
+    const query = "SELECT id, nombre_rol\
+                    FROM RolUsuarios"
     const [rows] = await pool.query(query)
     return rows
 }
