@@ -17,7 +17,7 @@ import {
 // **************** RolUsuarios ****************
 app.get('/rolUsuarios', async (req, res) => {
     const rows = await getRolUsuarios()
-    res.json(rows)
+    res.send(rows)
 })
 
 app.use((err, req, res, next) => {
