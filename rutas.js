@@ -14,8 +14,6 @@ import {
  
  // Habilita CORS para todas las rutas
  app.use(cors());
-
- app.use(express.json()); // Necesario para interpretar JSON en el cuerpo de la solicitud
 // ---------------------------------- Consultas ----------------------------------
 
 // **************** RolUsuarios ****************
