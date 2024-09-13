@@ -37,3 +37,12 @@ export async function login(correo_electronico, contrasena) {
     const [rows] = await pool.query(query, [correo_electronico, contrasena])
     return rows
 }
+
+// ------------------------------- Inserciones -------------------------------
+
+// **************** Usuarios ****************
+export async function insertUsuario(nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol) {
+    const query = "INSERT INTO Usuarios (nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol, estado)\
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);"
+    await pool.query(query, [nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol, 1])
+}

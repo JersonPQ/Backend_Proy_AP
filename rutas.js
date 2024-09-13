@@ -5,7 +5,8 @@ import {PORT} from "./config.js"
 import { 
     getRolUsuarios,
     getUsuarios,
-    login
+    login,
+    insertUsuario
  } from './database.js'
 
  const app = express();
@@ -49,6 +50,20 @@ app.post('/login', async (req, res) => {
         }
 
         res.status(200).send(rows);
+    } catch (error) {
+        res.status(500).send('Error en el servidor');
+    }
+})
+
+// ------------------------------- Inserciones -------------------------------
+
+// **************** Usuarios ****************
+app.post('/insertUsuario', async (req, res) => {
+    try {
+        const {nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol} = req.body;
+        await insertUsuario(nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol);
+
+        res.status(200).send('Usuario insertado');
     } catch (error) {
         res.status(500).send('Error en el servidor');
     }
