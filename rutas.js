@@ -2,7 +2,11 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors'; // Importa el middleware cors
 import {PORT} from "./config.js"
-import './database.js'
+import { 
+    getRolUsuarios,
+    getUsuarios,
+    login
+ } from './database.js'
 
  const app = express();
  // Configura body-parser como middleware
@@ -42,7 +46,7 @@ app.post('/login', async (req, res) => {
         const rows = await login(correo_electronico, contrasena);
 
         if (rows.length === 0) {
-            return res.status(401).send('Usuario no encontrado');
+            return res.status(404).send('Usuario no encontrado');
         }
 
         res.status(200).send(rows);
