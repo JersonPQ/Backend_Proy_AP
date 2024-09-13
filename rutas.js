@@ -39,7 +39,7 @@ app.get('/getUsuarios', async (req, res) => {
 })
 
 // **************** Login ****************
-app.post('/login', async (req, res) => {
+app.get('/login', async (req, res) => {
     try {
         const {correo_electronico, contrasena} = req.body;
         const rows = await login(correo_electronico, contrasena);
