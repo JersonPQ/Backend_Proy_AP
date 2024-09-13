@@ -28,3 +28,12 @@ export async function getUsuarios() {
     const [rows] = await pool.query(query)
     return rows
 }
+
+// **************** Login ****************
+export async function login(correo_electronico, contrasena) {
+    const query = "SELECT id, correo_electronico\
+                    FROM Usuarios\
+                    WHERE correo_electronico = ? AND contrasena = ?;"
+    const [rows] = await pool.query(query, [correo_electronico, contrasena])
+    return rows
+}

@@ -4,7 +4,8 @@ import cors from 'cors'; // Importa el middleware cors
 import {PORT} from "./config.js"
 import { 
     getRolUsuarios,
-    getUsuarios
+    getUsuarios,
+    login
  } from './database.js'
 
  const app = express();
@@ -25,6 +26,17 @@ app.get('/getRolUsuarios', async (req, res) => {
 app.get('/getUsuarios', async (req, res) => {
     const rows = await getUsuarios()
     res.send(rows)
+})
+
+// **************** Login ****************
+app.get('/login', async (req, res) => {
+    const {correo_electronico, contrasena} = req.body
+    const rows = await login(correo_electronico, contrasena)
+    if (length(res.send(rows)) === 0) {
+        res.send('Usuario no encontrado')
+    } else {
+        res.send(rows)
+    }
 })
 
 app.use((err, req, res, next) => {
