@@ -50,6 +50,6 @@ export async function insertUsuario(nombre_completo, cedula, correo_electronico,
 // **************** Proyectos ****************
 export async function insertProyecto(id_usuario, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id, imagen = null) {
     const query = "INSERT INTO Proyectos (id_usuario, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id, imagenes_videos)\
-                    VALUES (?, ?, ?, ?, ?, ?);"
+                    VALUES (?, ?, ?, ?, ?, ?, ?);"
     await pool.query(query, [id_usuario, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id, imagen])
 }
