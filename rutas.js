@@ -8,12 +8,15 @@ import {
     login
  } from './database.js'
 
+ const express = require('express');
  const app = express();
  // Configura body-parser como middleware
  app.use(bodyParser.json());
  
  // Habilita CORS para todas las rutas
  app.use(cors());
+
+ app.use(express.json()); // Necesario para interpretar JSON en el cuerpo de la solicitud
 // ---------------------------------- Consultas ----------------------------------
 
 // **************** RolUsuarios ****************
