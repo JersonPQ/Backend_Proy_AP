@@ -24,7 +24,7 @@ app.get('/getRolUsuarios', async (req, res) => {
         
         res.status(200).send(rows);
     } catch (error) {
-        res.status(500).send('Error en el servidor');
+        res.status(500).send('Error en el servidor - ' + error);
     }
 })
 
@@ -35,7 +35,7 @@ app.get('/getUsuarios', async (req, res) => {
 
         res.status(200).send(rows);
     } catch (error) {
-        res.status(500).send('Error en el servidor');
+        res.status(500).send('Error en el servidor - ' + error);
     }
 })
 
@@ -51,7 +51,7 @@ app.post('/login', async (req, res) => {
 
         res.status(200).send(rows);
     } catch (error) {
-        res.status(500).send('Error en el servidor');
+        res.status(500).send('Error en el servidor - ' + error);
     }
 })
 
