@@ -65,7 +65,7 @@ app.post('/insertUsuario', async (req, res) => {
 
         res.status(200).send('Usuario insertado');
     } catch (error) {
-        res.status(500).send('Error en el servidor');
+        res.status(500).send('Error en el servidor - ' + error);
     }
 })
 
