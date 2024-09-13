@@ -35,5 +35,5 @@ export async function login(correo_electronico, contrasena) {
                     FROM Usuarios\
                     WHERE correo_electronico = ? AND contrasena = ?;"
     const [rows] = await pool.query(query, [correo_electronico, contrasena])
-    return rows.length > 0 ? rows[0] : null;
+    return rows
 }
