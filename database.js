@@ -38,6 +38,16 @@ export async function login(correo_electronico, contrasena) {
     return rows
 }
 
+// **************** Proyectos ****************
+export async function getProyectos() {
+    const query = "SELECT P.id, P.id_usuario, P.nombre_proyecto, P.descripcion, P.objetivo_financiacion, P.monto_recaudado, P.fecha_limite,\
+                    C.nombre_categoria, P.imagenes_videos, P.fecha_creacion\
+                    FROM Proyectos P\
+                        INNER JOIN Categorias C ON P.categoria_id = C.id;"
+    const [rows] = await pool.query(query)
+    return rows
+}
+
 // ------------------------------- Inserciones -------------------------------
 
 // **************** Usuarios ****************

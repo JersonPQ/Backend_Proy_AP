@@ -5,6 +5,7 @@ import {PORT} from "./config.js"
 import { 
     getRolUsuarios,
     getUsuarios,
+    getProyectos,
     login,
     insertUsuario,
     insertProyecto
@@ -49,6 +50,17 @@ app.post('/login', async (req, res) => {
         if (rows.length < 1) {
             res.status(404).send('Usuario no encontrado');
         }
+
+        res.status(200).send(rows);
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
+// **************** Proyectos ****************
+app.get('/getProyectos', async (req, res) => {
+    try {
+        const rows = await getProyectos();
 
         res.status(200).send(rows);
     } catch (error) {
