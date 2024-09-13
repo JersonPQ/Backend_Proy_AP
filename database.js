@@ -42,7 +42,7 @@ export async function login(correo_electronico, contrasena) {
 
 // **************** Usuarios ****************
 export async function insertUsuario(nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol) {
-    const query = "INSERT INTO Usuarios (nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol, estado)\
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);"
-    await pool.query(query, [nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol, 1])
+    const query = "INSERT INTO Usuarios (nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol)\
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?);"
+    await pool.query(query, [nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol])
 }
