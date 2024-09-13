@@ -40,20 +40,19 @@ app.get('/getUsuarios', async (req, res) => {
 
 // **************** Login ****************
 app.post('/login', async (req, res) => {
-    const { correo_electronico, contrasena } = req.body;
-
     try {
+        const {correo_electronico, contrasena} = req.body;
         const rows = await login(correo_electronico, contrasena);
 
         if (rows.length === 0) {
-            return res.status(401).send('Usuario no encontrado');
+            res.status(404).send('Usuario no encontrado');
         }
 
         res.status(200).send(rows);
     } catch (error) {
         res.status(500).send('Error en el servidor');
     }
-});
+})
 
 
 app.use((err, req, res, next) => {
