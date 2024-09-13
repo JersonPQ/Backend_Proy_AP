@@ -42,13 +42,13 @@ app.get('/getUsuarios', async (req, res) => {
 app.post('/login', async (req, res) => {
     try {
         const {correo_electronico, contrasena} = req.body;
-        const rows = await login(correo_electronico, contrasena);
+        const userData = await login(correo_electronico, contrasena);
 
-        if (rows.length < 1) {
-            res.status(404).send('Usuario no encontrado');
+        if (userData) {
+            res.json(userData); // Devuelve los datos del usuario
+        } else {
+            res.status(401).send('Credenciales inválidas');
         }
-
-        res.status(200).send(rows);
     } catch (error) {
         res.status(500).send('Error en el servidor');
     }
