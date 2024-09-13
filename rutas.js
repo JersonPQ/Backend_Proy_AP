@@ -32,7 +32,7 @@ app.get('/getUsuarios', async (req, res) => {
 app.get('/login', async (req, res) => {
     const {correo_electronico, contrasena} = req.body
     const rows = await login(correo_electronico, contrasena)
-    if (length(res.send(rows)) === 0) {
+    if (res.send(rows).length === 0) {
         res.send('Usuario no encontrado')
     } else {
         res.send(rows)
