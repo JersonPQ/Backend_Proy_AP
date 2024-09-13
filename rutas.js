@@ -39,12 +39,12 @@ app.get('/getUsuarios', async (req, res) => {
 })
 
 // **************** Login ****************
-app.get('/login', async (req, res) => {
+app.post('/login', async (req, res) => {
     try {
         const {correo_electronico, contrasena} = req.body;
         const rows = await login(correo_electronico, contrasena);
 
-        if (rows.length === 0) {
+        if (rows.length < 1) {
             res.status(404).send('Usuario no encontrado');
         }
 
