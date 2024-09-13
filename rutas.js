@@ -18,26 +18,43 @@ import {
 
 // **************** RolUsuarios ****************
 app.get('/getRolUsuarios', async (req, res) => {
-    const rows = await getRolUsuarios()
-    res.send(rows)
+    try {
+        const rows = await getRolUsuarios()
+        
+        res.status(200).send(rows);
+    } catch (error) {
+        res.status(500).send('Error en el servidor');
+    }
 })
 
 // **************** Usuarios ****************
 app.get('/getUsuarios', async (req, res) => {
-    const rows = await getUsuarios()
-    res.send(rows)
+    try {
+        const rows = await getUsuarios();
+
+        res.status(200).send(rows);
+    } catch (error) {
+        res.status(500).send('Error en el servidor');
+    }
 })
 
 // **************** Login ****************
-app.get('/login', async (req, res) => {
-    const {correo_electronico, contrasena} = req.body
-    const rows = await login(correo_electronico, contrasena)
-    if (res.send(rows).length === 0) {
-        res.send('Usuario no encontrado')
-    } else {
-        res.send(rows)
+app.post('/login', async (req, res) => {
+    const { correo_electronico, contrasena } = req.body;
+
+    try {
+        const rows = await login(correo_electronico, contrasena);
+
+        if (rows.length === 0) {
+            return res.status(404).send('Usuario no encontrado');
+        }
+
+        res.status(200).send(rows);
+    } catch (error) {
+        res.status(500).send('Error en el servidor');
     }
-})
+});
+
 
 app.use((err, req, res, next) => {
     console.error(err.stack)
