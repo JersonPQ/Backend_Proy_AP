@@ -58,9 +58,10 @@ app.post('/login', async (req, res) => {
 })
 
 // **************** Proyectos ****************
-app.get('/getProyectos', async (req, res) => {
+app.get('/getProyectos/:id_usuario', async (req, res) => {
     try {
-        const rows = await getProyectos();
+        const {id_usuario} = req.params;
+        const rows = await getProyectos(id_usuario);
 
         res.status(200).send(rows);
     } catch (error) {
