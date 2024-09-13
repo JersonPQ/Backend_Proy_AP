@@ -6,7 +6,8 @@ import {
     getRolUsuarios,
     getUsuarios,
     login,
-    insertUsuario
+    insertUsuario,
+    insertProyecto
  } from './database.js'
 
  const app = express();
@@ -64,6 +65,18 @@ app.post('/insertUsuario', async (req, res) => {
         await insertUsuario(nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol);
 
         res.status(200).send('Usuario insertado');
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
+// **************** Proyectos ****************
+app.post('/insertProyecto', async (req, res) => {
+    try {
+        const {id_usuario, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id, imagenes_videos} = req.body;
+        await insertProyecto(id_usuario, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id, imagenes_videos);
+
+        res.status(200).send('Proyecto insertado');
     } catch (error) {
         res.status(500).send('Error en el servidor - ' + error);
     }

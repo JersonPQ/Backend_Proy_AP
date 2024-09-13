@@ -46,3 +46,10 @@ export async function insertUsuario(nombre_completo, cedula, correo_electronico,
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?);"
     await pool.query(query, [nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol])
 }
+
+// **************** Proyectos ****************
+export async function insertProyecto(id_usuario, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id, imagen = null) {
+    const query = "INSERT INTO Proyectos (id_usuario, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id, imagenes_videos)\
+                    VALUES (?, ?, ?, ?, ?, ?);"
+    await pool.query(query, [id_usuario, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id, imagen])
+}
