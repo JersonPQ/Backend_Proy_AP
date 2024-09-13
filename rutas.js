@@ -8,7 +8,6 @@ import {
     login
  } from './database.js'
 
- const express = require('express');
  const app = express();
  // Configura body-parser como middleware
  app.use(bodyParser.json());
