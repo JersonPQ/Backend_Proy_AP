@@ -29,6 +29,15 @@ export async function getUsuarios() {
     return rows
 }
 
+export async function getUsuarioById(id) {
+    const query = "SELECT id, nombre_completo, correo_electronico, area_trabajo,\
+                    cartera_digital, telefono, contrasena, fecha_registro, rol, estado\
+                    FROM Usuarios\
+                    WHERE id = ?;"
+    const [rows] = await pool.query(query, [id])
+    return rows
+}
+
 // **************** Login ****************
 export async function login(correo_electronico, contrasena) {
     const query = "SELECT id, correo_electronico\
