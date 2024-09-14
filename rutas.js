@@ -11,7 +11,8 @@ import {
     login,
     insertUsuario,
     insertProyecto,
-    updateMontoProyecto
+    updateMontoProyecto,
+    updateNombreProyecto
  } from './database.js'
 
  const app = express();
