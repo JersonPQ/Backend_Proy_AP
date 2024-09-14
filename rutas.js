@@ -10,7 +10,8 @@ import {
     getCategorias,
     login,
     insertUsuario,
-    insertProyecto
+    insertProyecto,
+    updateMontoProyecto
  } from './database.js'
 
  const app = express();
@@ -113,6 +114,21 @@ app.post('/insertProyecto', async (req, res) => {
         await insertProyecto(id_usuario, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id, imagenes_videos);
 
         res.status(200).send('Proyecto insertado');
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
+// ------------------------------- Actualizaciones -------------------------------
+
+// **************** Proyectos ****************
+// actualiza monto recaudado del proyecto con el monto donado, realiza suma del monto ya existente con el monto donado
+app.put('/updateMontoProyecto', async (req, res) => {
+    try {
+        const {id_proyecto, monto} = req.body;
+        await updateMontoProyecto(id_proyecto, monto);
+
+        res.status(200).send('Monto actualizado');
     } catch (error) {
         res.status(500).send('Error en el servidor - ' + error);
     }

@@ -81,3 +81,16 @@ export async function insertProyecto(id_usuario, nombre_proyecto, descripcion, o
                     VALUES (?, ?, ?, ?, ?, ?, ?);"
     await pool.query(query, [id_usuario, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id, imagen])
 }
+
+// ------------------------------- Actualizaciones -------------------------------
+
+// **************** Proyectos ****************
+export async function updateMontoProyecto(id, monto_donado) {
+
+    // actualiza monto recaudado del proyecto con el monto donado, realiza suma del monto ya existente con el monto donado
+    const query = "UPDATE Proyectos\
+                    SET monto_recaudado = monto_recaudado + ?\
+                    WHERE id = ?;"
+    await pool.query(query, [monto_donado, id])
+}
+
