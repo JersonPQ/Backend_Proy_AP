@@ -11,6 +11,7 @@ import {
     login,
     insertUsuario,
     insertProyecto,
+    updateProyecto,
     updateMontoProyecto,
     updateNombreProyecto,
     updateDescripcionProyecto,
@@ -134,6 +135,17 @@ app.post('/insertProyecto', async (req, res) => {
 // ------------------------------- Actualizaciones -------------------------------
 
 // **************** Proyectos ****************
+app.put('/updateProyecto', async (req, res) => {
+    try {
+        const {id_proyecto, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id} = req.body;
+        await updateProyecto(id_proyecto, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id);
+
+        res.status(200).send('Proyecto actualizado');
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
 // actualiza monto recaudado del proyecto con el monto donado, realiza suma del monto ya existente con el monto donado
 app.put('/updateMontoProyecto', async (req, res) => {
     try {
