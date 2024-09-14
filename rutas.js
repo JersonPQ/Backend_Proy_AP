@@ -69,6 +69,16 @@ app.get('/getProyectos/:id_usuario', async (req, res) => {
     }
 })
 
+app.get('/getProyectos', async (req, res) => {
+    try {
+        const rows = await getProyectos();
+
+        res.status(200).send(rows);
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
 // ------------------------------- Inserciones -------------------------------
 
 // **************** Usuarios ****************
