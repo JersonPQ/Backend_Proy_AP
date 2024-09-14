@@ -16,7 +16,9 @@ import {
     updateDescripcionProyecto,
     updateObjetivoFinanciacionProyecto,
     updateFechaLimiteProyecto,
-    updateCategoriaProyecto
+    updateCategoriaProyecto,
+    activarCuentaUsuario,
+    desactivarCuentaUsuario
  } from './database.js'
 
  const app = express();
@@ -25,6 +27,11 @@ import {
  
  // Habilita CORS para todas las rutas
  app.use(cors());
+
+app.get('/', (req, res) => {
+    res.send('Proyecto de Administración de Proyectos');
+})
+
 // ---------------------------------- Consultas ----------------------------------
 
 // **************** RolUsuarios ****************
@@ -189,6 +196,29 @@ app.put('/updateCategoriaProyecto', async (req, res) => {
         await updateCategoriaProyecto(id_proyecto, categoria_id);
 
         res.status(200).send('Categoria actualizada');
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
+// ************************** Usuarios **************************
+app.put('/activarCuentaUsuario', async (req, res) => {
+    try {
+        const {id_usuario} = req.body;
+        await activarCuentaUsuario(id_usuario);
+
+        res.status(200).send('Cuenta activada');
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
+app.put('/desactivarCuentaUsuario', async (req, res) => {
+    try {
+        const {id_usuario} = req.body;
+        await desactivarCuentaUsuario(id_usuario);
+
+        res.status(200).send('Cuenta desactivada');
     } catch (error) {
         res.status(500).send('Error en el servidor - ' + error);
     }

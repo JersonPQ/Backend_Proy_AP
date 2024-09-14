@@ -85,6 +85,41 @@ export async function insertProyecto(id_usuario, nombre_proyecto, descripcion, o
 // ------------------------------- Actualizaciones -------------------------------
 
 // **************** Proyectos ****************
+export async function updateProyecto(id, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id) {
+    if (nombre_proyecto == null) {
+        throw new Error("El nombre del proyecto no puede ser nulo")
+    }
+
+    if (descripcion == null) {
+        throw new Error("La descripcion del proyecto no puede ser nula")
+    }
+
+    if (objetivo_financiacion == null) {
+        throw new Error("El objetivo de financiacion del proyecto no puede ser nulo")
+    }
+
+    if (fecha_limite == null) {
+        throw new Error("La fecha limite del proyecto no puede ser nula")
+    }
+
+    if (categoria_id == null) {
+        throw new Error("La categoria del proyecto no puede ser nula")
+    }
+
+    if (imagenes_videos == null) {
+        throw new Error("Las imagenes o videos del proyecto no pueden ser nulos")
+    }
+
+    if (id == null) {
+        throw new Error("El id del proyecto no puede ser nulo")
+    }
+
+    const query = "UPDATE Proyectos\
+                    SET nombre_proyecto = ?, descripcion = ?, objetivo_financiacion = ?, fecha_limite = ?, categoria_id = ?\
+                    WHERE id = ?;"
+    await pool.query(query, [nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id, id])
+}
+
 export async function updateMontoProyecto(id, monto_donado) {
 
     if (monto_donado == null) {
@@ -175,4 +210,27 @@ export async function updateCategoriaProyecto(id, categoria_id) {
                     SET categoria_id = ?\
                     WHERE id = ?;"
     await pool.query(query, [categoria_id, id])
+}
+
+// **************** Usuarios ****************
+export async function activarCuentaUsuario(id) {
+    if (id == null) {
+        throw new Error("El id del usuario no puede ser nulo")
+    }
+
+    const query = "UPDATE Usuarios\
+                    SET estado = TRUE\
+                    WHERE id = ?;"
+    await pool.query(query, [id])
+}
+
+export async function desactivarCuentaUsuario(id) {
+    if (id == null) {
+        throw new Error("El id del usuario no puede ser nulo")
+    }
+
+    const query = "UPDATE Usuarios\
+                    SET estado = FALSE\
+                    WHERE id = ?;"
+    await pool.query(query, [id])
 }
