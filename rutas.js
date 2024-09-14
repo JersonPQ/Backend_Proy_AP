@@ -5,6 +5,7 @@ import {PORT} from "./config.js"
 import { 
     getRolUsuarios,
     getUsuarios,
+    getProyectosByUsuario,
     getProyectos,
     getCategorias,
     login,
@@ -62,7 +63,7 @@ app.post('/login', async (req, res) => {
 app.get('/getProyectos/:id_usuario', async (req, res) => {
     try {
         const {id_usuario} = req.params;
-        const rows = await getProyectos(id_usuario);
+        const rows = await getProyectosByUsuario(id_usuario);
 
         res.status(200).send(rows);
     } catch (error) {

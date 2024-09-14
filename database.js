@@ -39,7 +39,7 @@ export async function login(correo_electronico, contrasena) {
 }
 
 // **************** Proyectos ****************
-export async function getProyectos(id_usuario) {
+export async function getProyectosByUsuario(id_usuario) {
     const query = "SELECT P.id, P.id_usuario, P.nombre_proyecto, P.descripcion, P.objetivo_financiacion, P.monto_recaudado, P.fecha_limite,\
                     C.nombre_categoria, P.imagenes_videos, P.fecha_creacion\
                     FROM Proyectos P\
