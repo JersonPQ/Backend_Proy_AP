@@ -14,7 +14,7 @@ import {
     updateMontoProyecto,
     updateNombreProyecto,
     updateDescripcionProyecto,
-    updateOjetivoFinanciacionProyecto
+    updateObjetivoFinanciacionProyecto
  } from './database.js'
 
  const app = express();
@@ -159,10 +159,10 @@ app.put('/updateDescripcionProyecto', async (req, res) => {
     }
 })
 
-app.put('/updateOjetivoFinanciacionProyecto', async (req, res) => {
+app.put('/updateObjetivoFinanciacionProyecto', async (req, res) => {
     try {
         const {id_proyecto, objetivo_financiacion} = req.body;
-        await updateOjetivoFinanciacionProyecto(id_proyecto, objetivo_financiacion);
+        await updateObjetivoFinanciacionProyecto(id_proyecto, objetivo_financiacion);
 
         res.status(200).send('Objetivo de financiacion actualizado');
     } catch (error) {
