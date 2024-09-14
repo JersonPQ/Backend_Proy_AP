@@ -14,7 +14,8 @@ import {
     updateMontoProyecto,
     updateNombreProyecto,
     updateDescripcionProyecto,
-    updateObjetivoFinanciacionProyecto
+    updateObjetivoFinanciacionProyecto,
+    updateFechaLimiteProyecto
  } from './database.js'
 
  const app = express();
@@ -165,6 +166,17 @@ app.put('/updateObjetivoFinanciacionProyecto', async (req, res) => {
         await updateObjetivoFinanciacionProyecto(id_proyecto, objetivo_financiacion);
 
         res.status(200).send('Objetivo de financiacion actualizado');
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
+app.put('/updateFechaLimiteProyecto', async (req, res) => {
+    try {
+        const {id_proyecto, fecha_limite} = req.body;
+        await updateFechaLimiteProyecto(id_proyecto, fecha_limite);
+
+        res.status(200).send('Fecha limite actualizada');
     } catch (error) {
         res.status(500).send('Error en el servidor - ' + error);
     }

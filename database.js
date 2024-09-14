@@ -146,3 +146,18 @@ export async function updateObjetivoFinanciacionProyecto(id, objetivo_financiaci
                     WHERE id = ?;"
     await pool.query(query, [objetivo_financiacion, id])
 }
+
+export async function updateFechaLimiteProyecto(id, fecha_limite) {
+    if (fecha_limite == null) {
+        throw new Error("La fecha limite del proyecto no puede ser nula")
+    }
+
+    if (id == null) {
+        throw new Error("El id del proyecto no puede ser nulo")
+    }
+
+    const query = "UPDATE Proyectos\
+                    SET fecha_limite = ?\
+                    WHERE id = ?;"
+    await pool.query(query, [fecha_limite, id])
+}
