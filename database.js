@@ -41,7 +41,7 @@ export async function login(correo_electronico, contrasena) {
 // **************** Proyectos ****************
 export async function getProyectosByUsuario(id_usuario) {
     const query = "SELECT P.id, P.id_usuario, P.nombre_proyecto, P.descripcion, P.objetivo_financiacion, P.monto_recaudado, P.fecha_limite,\
-                    C.nombre_categoria, P.imagenes_videos, P.fecha_creacion\
+                    P.categoria_id, C.nombre_categoria, P.imagenes_videos, P.fecha_creacion\
                     FROM Proyectos P\
                         INNER JOIN Categorias C ON P.categoria_id = C.id\
                     WHERE P.id_usuario = ?;"
@@ -51,7 +51,7 @@ export async function getProyectosByUsuario(id_usuario) {
 
 export async function getProyectos() {
     const query = "SELECT P.id, P.id_usuario, P.nombre_proyecto, P.descripcion, P.objetivo_financiacion, P.monto_recaudado, P.fecha_limite,\
-                    C.nombre_categoria, P.imagenes_videos, P.fecha_creacion\
+                    P.categoria_id, C.nombre_categoria, P.imagenes_videos, P.fecha_creacion\
                     FROM Proyectos P\
                         INNER JOIN Categorias C ON P.categoria_id = C.id;"
     const [rows] = await pool.query(query)
@@ -160,4 +160,19 @@ export async function updateFechaLimiteProyecto(id, fecha_limite) {
                     SET fecha_limite = ?\
                     WHERE id = ?;"
     await pool.query(query, [fecha_limite, id])
+}
+
+export async function updateCategoriaProyecto(id, categoria_id) {
+    if (categoria_id == null) {
+        throw new Error("La categoria del proyecto no puede ser nula")
+    }
+
+    if (id == null) {
+        throw new Error("El id del proyecto no puede ser nulo")
+    }
+
+    const query = "UPDATE Proyectos\
+                    SET categoria_id = ?\
+                    WHERE id = ?;"
+    await pool.query(query, [categoria_id, id])
 }
