@@ -94,6 +94,7 @@ export async function updateMontoProyecto(id, monto_donado) {
     if (id == null) {
         throw new Error("El id del proyecto no puede ser nulo")
     }
+    
     // actualiza monto recaudado del proyecto con el monto donado, realiza suma del monto ya existente con el monto donado
     const query = "UPDATE Proyectos\
                     SET monto_recaudado = monto_recaudado + ?\
@@ -101,3 +102,17 @@ export async function updateMontoProyecto(id, monto_donado) {
     await pool.query(query, [monto_donado, id])
 }
 
+export async function updateNombreProyecto(id, nombre_proyecto) {
+    if (nombre_proyecto == null) {
+        throw new Error("El nombre del proyecto no puede ser nulo")
+    }
+
+    if (id == null) {
+        throw new Error("El id del proyecto no puede ser nulo")
+    }
+
+    const query = "UPDATE Proyectos\
+                    SET nombre_proyecto = ?\
+                    WHERE id = ?;"
+    await pool.query(query, [nombre_proyecto, id])
+}

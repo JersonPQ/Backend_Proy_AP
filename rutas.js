@@ -134,6 +134,17 @@ app.put('/updateMontoProyecto', async (req, res) => {
     }
 })
 
+app.put('/updateNombreProyecto', async (req, res) => {
+    try {
+        const {id_proyecto, nombre_proyecto} = req.body;
+        await updateNombreProyecto(id_proyecto, nombre_proyecto);
+
+        res.status(200).send('Nombre actualizado');
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
 
 app.use((err, req, res, next) => {
     console.error(err.stack)
