@@ -89,7 +89,9 @@ export async function updateMontoProyecto(id, monto_donado) {
 
     if (monto_donado <= 0) {
         throw new Error("El monto donado debe ser mayor a 0")
-    } 
+    } else if (monto_donado == null) {
+        throw new Error("El monto donado no puede ser nulo")
+    }
 
     if (id == null) {
         throw new Error("El id del proyecto no puede ser nulo")
