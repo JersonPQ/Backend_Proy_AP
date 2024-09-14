@@ -58,6 +58,14 @@ export async function getProyectos() {
     return rows
 }
 
+// **************** Categorias ****************
+export async function getCategorias() {
+    const query = "SELECT id, nombre_categoria\
+                    FROM Categorias;"
+    const [rows] = await pool.query(query)
+    return rows
+}
+
 // ------------------------------- Inserciones -------------------------------
 
 // **************** Usuarios ****************

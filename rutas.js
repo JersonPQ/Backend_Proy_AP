@@ -6,6 +6,7 @@ import {
     getRolUsuarios,
     getUsuarios,
     getProyectos,
+    getCategorias,
     login,
     insertUsuario,
     insertProyecto
@@ -72,6 +73,17 @@ app.get('/getProyectos/:id_usuario', async (req, res) => {
 app.get('/getProyectos', async (req, res) => {
     try {
         const rows = await getProyectos();
+
+        res.status(200).send(rows);
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
+// **************** Categorias ****************
+app.get('/getCategorias', async (req, res) => {
+    try {
+        const rows = await getCategorias();
 
         res.status(200).send(rows);
     } catch (error) {
