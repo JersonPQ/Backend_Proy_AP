@@ -106,10 +106,6 @@ export async function updateProyecto(id, nombre_proyecto, descripcion, objetivo_
         throw new Error("La categoria del proyecto no puede ser nula")
     }
 
-    if (imagenes_videos == null) {
-        throw new Error("Las imagenes o videos del proyecto no pueden ser nulos")
-    }
-
     if (id == null) {
         throw new Error("El id del proyecto no puede ser nulo")
     }
