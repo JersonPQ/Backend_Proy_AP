@@ -13,7 +13,8 @@ import {
     insertProyecto,
     updateMontoProyecto,
     updateNombreProyecto,
-    updateDescripcionProyecto
+    updateDescripcionProyecto,
+    updateOjetivoFinanciacionProyecto
  } from './database.js'
 
  const app = express();
@@ -153,6 +154,17 @@ app.put('/updateDescripcionProyecto', async (req, res) => {
         await updateDescripcionProyecto(id_proyecto, descripcion);
 
         res.status(200).send('Descripcion actualizada');
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
+app.put('/updateOjetivoFinanciacionProyecto', async (req, res) => {
+    try {
+        const {id_proyecto, objetivo_financiacion} = req.body;
+        await updateOjetivoFinanciacionProyecto(id_proyecto, objetivo_financiacion);
+
+        res.status(200).send('Objetivo de financiacion actualizado');
     } catch (error) {
         res.status(500).send('Error en el servidor - ' + error);
     }

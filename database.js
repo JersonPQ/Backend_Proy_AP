@@ -131,3 +131,18 @@ export async function updateDescripcionProyecto(id, descripcion) {
                     WHERE id = ?;"
     await pool.query(query, [descripcion, id])
 }
+
+export async function updateObjetivoFinanciacionProyecto(id, objetivo_financiacion) {
+    if (objetivo_financiacion == null) {
+        throw new Error("El objetivo de financiacion del proyecto no puede ser nulo")
+    }
+
+    if (id == null) {
+        throw new Error("El id del proyecto no puede ser nulo")
+    }
+
+    const query = "UPDATE Proyectos\
+                    SET objetivo_financiacion = ?\
+                    WHERE id = ?;"
+    await pool.query(query, [objetivo_financiacion, id])
+}
