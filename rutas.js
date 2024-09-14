@@ -12,7 +12,8 @@ import {
     insertUsuario,
     insertProyecto,
     updateMontoProyecto,
-    updateNombreProyecto
+    updateNombreProyecto,
+    updateDescripcionProyecto
  } from './database.js'
 
  const app = express();
@@ -141,6 +142,17 @@ app.put('/updateNombreProyecto', async (req, res) => {
         await updateNombreProyecto(id_proyecto, nombre_proyecto);
 
         res.status(200).send('Nombre actualizado');
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
+app.put('/updateDescripcionProyecto', async (req, res) => {
+    try {
+        const {id_proyecto, descripcion} = req.body;
+        await updateDescripcionProyecto(id_proyecto, descripcion);
+
+        res.status(200).send('Descripcion actualizada');
     } catch (error) {
         res.status(500).send('Error en el servidor - ' + error);
     }
