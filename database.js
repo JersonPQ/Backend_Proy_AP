@@ -87,6 +87,13 @@ export async function insertProyecto(id_usuario, nombre_proyecto, descripcion, o
 // **************** Proyectos ****************
 export async function updateMontoProyecto(id, monto_donado) {
 
+    if (monto_donado <= 0) {
+        throw new Error("El monto donado debe ser mayor a 0")
+    } 
+
+    if (id == null) {
+        throw new Error("El id del proyecto no puede ser nulo")
+    }
     // actualiza monto recaudado del proyecto con el monto donado, realiza suma del monto ya existente con el monto donado
     const query = "UPDATE Proyectos\
                     SET monto_recaudado = monto_recaudado + ?\
