@@ -111,6 +111,19 @@ export async function insertProyecto(id_usuario, nombre_proyecto, descripcion, o
 
 // **************** Donaciones ****************
 export async function insertDonacion(id_usuario, id_proyecto, monto_donado) {
+
+    if (monto_donado == null) {
+        throw new Error("El monto donado no puede ser nulo")
+    }
+
+    if (id_usuario == null) {
+        throw new Error("El id del usuario no puede ser nulo")
+    }
+
+    if (id_proyecto == null) {
+        throw new Error("El id del proyecto no puede ser nulo")
+    }
+
     const query = "INSERT INTO Donaciones (id_usuario, id_proyecto, monto_donado)\
                     VALUES (?, ?, ?);"
     await pool.query(query, [id_usuario, id_proyecto, monto_donado])
