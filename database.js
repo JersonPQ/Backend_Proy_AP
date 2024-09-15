@@ -248,3 +248,18 @@ export async function desactivarCuentaUsuario(id) {
                     WHERE id = ?;"
     await pool.query(query, [id])
 }
+
+export async function updateCarteraDigitalUsuario(id, monto) {
+    if (monto == null) {
+        throw new Error("El monto no puede ser nulo")
+    }
+
+    if (id == null) {
+        throw new Error("El id del usuario no puede ser nulo")
+    }
+
+    const query = "UPDATE Usuarios\
+                    SET cartera_digital = cartera_digital + ?\
+                    WHERE id = ?;"
+    await pool.query(query, [monto, id])
+}

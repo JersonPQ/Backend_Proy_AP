@@ -21,7 +21,8 @@ import {
     updateFechaLimiteProyecto,
     updateCategoriaProyecto,
     activarCuentaUsuario,
-    desactivarCuentaUsuario
+    desactivarCuentaUsuario,
+    updateCarteraDigitalUsuario
  } from './database.js'
 
  const app = express();
@@ -258,6 +259,17 @@ app.put('/desactivarCuentaUsuario', async (req, res) => {
         await desactivarCuentaUsuario(id_usuario);
 
         res.status(200).send('Cuenta desactivada');
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
+app.put('/updateCarteraDigitalUsuario', async (req, res) => {
+    try {
+        const {id_usuario, cartera_digital} = req.body;
+        await updateCarteraDigitalUsuario(id_usuario, cartera_digital);
+
+        res.status(200).send('Cartera digital actualizada');
     } catch (error) {
         res.status(500).send('Error en el servidor - ' + error);
     }
