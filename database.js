@@ -85,7 +85,7 @@ export async function validarFondosSuficientesUsuario(id_usuario, monto) {
 }
 
 export async function getDonaciones() {
-    const query = "SELECT D.id, D.id_usuario, U.nombre_completo, D.id_proyecto, P.nombre_proyecto, D.monto_donado, D.fecha_donacion\
+    const query = "SELECT D.id, D.id_usuario, U.nombre_completo \"nombre_usuario\", D.id_proyecto, P.nombre_proyecto, D.monto_donado, D.fecha_donacion\
                     FROM Donaciones D\
                         INNER JOIN Proyectos P ON D.id_proyecto = P.id\
                         INNER JOIN Usuarios U ON D.id_usuario = U.id;"
