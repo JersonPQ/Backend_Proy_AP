@@ -266,8 +266,8 @@ app.put('/desactivarCuentaUsuario', async (req, res) => {
 
 app.put('/updateCarteraDigitalUsuario', async (req, res) => {
     try {
-        const {id_usuario, cartera_digital} = req.body;
-        await updateCarteraDigitalUsuario(id_usuario, cartera_digital);
+        const {id_usuario, monto} = req.body;
+        await updateCarteraDigitalUsuario(id_usuario, monto);
 
         res.status(200).send('Cartera digital actualizada');
     } catch (error) {
