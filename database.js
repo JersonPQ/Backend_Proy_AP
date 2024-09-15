@@ -84,6 +84,14 @@ export async function validarFondosSuficientesUsuario(id_usuario, monto) {
     return rows
 }
 
+export async function getDonaciones() {
+    const query = "SELECT D.id, D.id_usuario, D.id_proyecto, P.nombre_proyecto, D.monto_donado, D.fecha_donacion\
+                    FROM Donaciones D\
+                        INNER JOIN Proyectos P ON D.id_proyecto = P.id;"
+    const [rows] = await pool.query(query)
+    return rows
+}
+
 // ------------------------------- Inserciones -------------------------------
 
 // **************** Usuarios ****************

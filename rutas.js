@@ -11,6 +11,7 @@ import {
     getCategorias,
     login,
     validarFondosSuficientesUsuario,
+    getDonaciones,
     insertUsuario,
     insertProyecto,
     updateProyecto,
@@ -129,6 +130,17 @@ app.get('/validarFondosSuficientesUsuario/:id_usuario/:monto', async (req, res) 
         const result = rows.length > 0 ? true : false;
 
         res.status(200).send({ result });
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
+// **************** Donaciones ****************
+app.get('/getDonaciones', async (req, res) => {
+    try {
+        const rows = await getDonaciones();
+
+        res.status(200).send(rows);
     } catch (error) {
         res.status(500).send('Error en el servidor - ' + error);
     }
