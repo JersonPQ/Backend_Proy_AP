@@ -84,11 +84,21 @@ export async function validarFondosSuficientesUsuario(id_usuario, monto) {
     return rows
 }
 
+// **************** Donaciones ****************
 export async function getDonaciones() {
     const query = "SELECT D.id, D.id_usuario, U.nombre_completo \"nombre_usuario\", D.id_proyecto, P.nombre_proyecto, D.monto_donado, D.fecha_donacion\
                     FROM Donaciones D\
                         INNER JOIN Proyectos P ON D.id_proyecto = P.id\
                         INNER JOIN Usuarios U ON D.id_usuario = U.id;"
+    const [rows] = await pool.query(query)
+    return rows
+}
+
+// **************** Estadísticas ****************
+export async function getEstadisticas() {
+    const query = "SELECT COUNT(id) \"Cantidad_Proyectos\", (SELECT COUNT(id) FROM Donaciones) \"Cantidad_Donaciones\",\
+                    (SELECT COUNT(id) FROM Usuarios WHERE estado = TRUE) \"Cantidad_Usuarios_Activos\"\
+                    FROM Proyectos;"
     const [rows] = await pool.query(query)
     return rows
 }
