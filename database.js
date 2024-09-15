@@ -42,7 +42,7 @@ export async function getUsuarioById(id) {
 export async function login(correo_electronico, contrasena) {
     const query = "SELECT id, correo_electronico\
                     FROM Usuarios\
-                    WHERE correo_electronico = ? AND contrasena = ?;"
+                    WHERE correo_electronico = ? AND contrasena = ? AND estado = TRUE;"
     const [rows] = await pool.query(query, [correo_electronico, contrasena])
     return rows
 }
