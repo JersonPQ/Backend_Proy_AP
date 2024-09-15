@@ -132,7 +132,7 @@ app.get('/validarFondosSuficientesUsuario/:id_usuario/:monto', async (req, res) 
 
         res.status(200).send({ result });
     } catch (error) {
-        res.status(500).send('Error en el servidor - ' + error);
+        res.status(500).send({ result: false, mensaje: 'Error en el servidor - ' + error });
     }
 })
 
@@ -179,9 +179,9 @@ app.post('/insertDonacion', async (req, res) => {
         const {id_usuario, id_proyecto, monto_donado} = req.body;
         await insertDonacion(id_usuario, id_proyecto, monto_donado);
 
-        res.status(200).send('Donacion realizada');
+        res.status(200).send({ result: true, mensaje: 'Donacion realizada' });
     } catch (error) {
-        res.status(500).send('Error en el servidor - ' + error);
+        res.status(500).send({ result: false, mensaje: 'Error en el servidor - ' + error });
     }
 })
 
