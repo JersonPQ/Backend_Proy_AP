@@ -176,8 +176,8 @@ app.post('/insertProyecto', async (req, res) => {
 // **************** Donaciones ****************
 app.post('/insertDonacion', async (req, res) => {
     try {
-        const {id_usuario, id_proyecto, monto} = req.body;
-        await insertDonacion(id_usuario, id_proyecto, monto);
+        const {id_usuario, id_proyecto, monto_donado} = req.body;
+        await insertDonacion(id_usuario, id_proyecto, monto_donado);
 
         res.status(200).send('Donacion realizada');
     } catch (error) {
