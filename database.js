@@ -109,6 +109,13 @@ export async function insertProyecto(id_usuario, nombre_proyecto, descripcion, o
     await pool.query(query, [id_usuario, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id, imagen])
 }
 
+// **************** Donaciones ****************
+export async function insertDonacion(id_usuario, id_proyecto, monto_donado) {
+    const query = "INSERT INTO Donaciones (id_usuario, id_proyecto, monto_donado)\
+                    VALUES (?, ?, ?);"
+    await pool.query(query, [id_usuario, id_proyecto, monto_donado])
+}
+
 // ------------------------------- Actualizaciones -------------------------------
 
 // **************** Proyectos ****************

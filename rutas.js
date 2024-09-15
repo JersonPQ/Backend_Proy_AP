@@ -14,6 +14,7 @@ import {
     getDonaciones,
     insertUsuario,
     insertProyecto,
+    insertDonacion,
     updateProyecto,
     updateMontoProyecto,
     updateNombreProyecto,
@@ -167,6 +168,18 @@ app.post('/insertProyecto', async (req, res) => {
         await insertProyecto(id_usuario, nombre_proyecto, descripcion, objetivo_financiacion, fecha_limite, categoria_id, imagenes_videos);
 
         res.status(200).send('Proyecto insertado');
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
+// **************** Donaciones ****************
+app.post('/insertDonacion', async (req, res) => {
+    try {
+        const {id_usuario, id_proyecto, monto} = req.body;
+        await insertDonacion(id_usuario, id_proyecto, monto);
+
+        res.status(200).send('Donacion realizada');
     } catch (error) {
         res.status(500).send('Error en el servidor - ' + error);
     }
