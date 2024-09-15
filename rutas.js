@@ -125,7 +125,7 @@ app.get('/validarFondosSuficientesUsuario/:id_usuario/:monto', async (req, res) 
         const {id_usuario, monto} = req.params;
         const rows = await validarFondosSuficientesUsuario(id_usuario, monto);
 
-        result = rows.length > 0;
+        result = rows.length > 0 ? true : false;
 
         res.status(200).send({ result });
     } catch (error) {
