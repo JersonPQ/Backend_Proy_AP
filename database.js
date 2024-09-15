@@ -75,6 +75,15 @@ export async function getCategorias() {
     return rows
 }
 
+// **************** Validación Fondos Suficientes ****************
+export async function validarFondosSuficientesUsuario(id_usuario, monto) {
+    const query = "SELECT cartera_digital\
+                    FROM Usuarios\
+                    WHERE id = ? AND cartera_digital >= ?;"
+    const [rows] = await pool.query(query, [id_usuario, monto])
+    return rows
+}
+
 // ------------------------------- Inserciones -------------------------------
 
 // **************** Usuarios ****************

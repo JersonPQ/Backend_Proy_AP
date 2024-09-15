@@ -10,6 +10,7 @@ import {
     getProyectos,
     getCategorias,
     login,
+    validarFondosSuficientesUsuario,
     insertUsuario,
     insertProyecto,
     updateProyecto,
@@ -113,6 +114,20 @@ app.get('/getCategorias', async (req, res) => {
         const rows = await getCategorias();
 
         res.status(200).send(rows);
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
+// **************** Validar Fondos Suficientes Usuario ****************
+app.get('/validarFondosSuficientesUsuario/:id_usuario/:monto', async (req, res) => {
+    try {
+        const {id_usuario, monto} = req.params;
+        const rows = await validarFondosSuficientesUsuario(id_usuario, monto);
+
+        result = rows.length > 0;
+
+        res.status(200).send({ result });
     } catch (error) {
         res.status(500).send('Error en el servidor - ' + error);
     }
