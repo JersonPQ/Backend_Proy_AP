@@ -67,6 +67,17 @@ export async function getProyectos() {
     return rows
 }
 
+export async function getProyectoById(id) {
+    const query = "SELECT P.id, P.id_usuario, U.nombre_completo \"nombre_usuario\", P.nombre_proyecto, P.descripcion, P.objetivo_financiacion, P.monto_recaudado, P.fecha_limite,\
+                    P.categoria_id, C.nombre_categoria, P.imagenes_videos, P.fecha_creacion\
+                    FROM Proyectos P\
+                        INNER JOIN Categorias C ON P.categoria_id = C.id\
+                        INNER JOIN Usuarios U ON P.id_usuario = U.id\
+                    WHERE P.id = ?;"
+    const [rows] = await pool.query(query, [id])
+    return rows
+}
+
 // **************** Categorias ****************
 export async function getCategorias() {
     const query = "SELECT id, nombre_categoria\
