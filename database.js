@@ -145,9 +145,13 @@ export async function insertDonacion(id_usuario, id_proyecto, monto_donado) {
         throw new Error("El id del proyecto no puede ser nulo")
     }
 
+    // inserta la donacion en la tabla Donaciones
     const query = "INSERT INTO Donaciones (id_usuario, id_proyecto, monto_donado)\
                     VALUES (?, ?, ?);"
     await pool.query(query, [id_usuario, id_proyecto, monto_donado])
+
+    // actualiza monto recaudado del proyecto con el monto donado
+    await updateMontoProyecto(id_proyecto, monto_donado)
 }
 
 // ------------------------------- Actualizaciones -------------------------------
