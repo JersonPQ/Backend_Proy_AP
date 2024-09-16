@@ -152,6 +152,9 @@ export async function insertDonacion(id_usuario, id_proyecto, monto_donado) {
 
     // actualiza monto recaudado del proyecto con el monto donado
     await updateMontoProyecto(id_proyecto, monto_donado)
+
+    // actualiza cartera digital del usuario con el monto donado
+    await updateCarteraDigitalUsuario(id_usuario, -monto_donado)
 }
 
 // ------------------------------- Actualizaciones -------------------------------
