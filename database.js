@@ -346,5 +346,5 @@ export async function updateDatosUsuario(id_usuario, nombre_completo, cedula, ar
     const query = "UPDATE Usuarios\
                     SET nombre_completo = ?, cedula = ?, area_trabajo = ?, telefono = ?\
                     WHERE id = ?;"
-    await pool.query(query, [nombre_completo, cedula, correo_electronico, area_trabajo, telefono, id_usuario])
+    await pool.query(query, [nombre_completo, cedula, area_trabajo, telefono, id_usuario])
 }
