@@ -320,3 +320,31 @@ export async function updateCarteraDigitalUsuario(id, monto) {
                     WHERE id = ?;"
     await pool.query(query, [monto, id])
 }
+
+// actualizar datos de los usuarios
+export async function updateDatosUsuario(id_usuario, nombre_completo, cedula, area_trabajo, telefono) {
+    if (nombre_completo == null) {
+        throw new Error("El nombre completo del usuario no puede ser nulo")
+    }
+
+    if (cedula == null) {
+        throw new Error("La cedula del usuario no puede ser nula")
+    }
+
+    if (area_trabajo == null) {
+        throw new Error("El area de trabajo del usuario no puede ser nula")
+    }
+
+    if (telefono == null) {
+        throw new Error("El telefono del usuario no puede ser nulo")
+    }
+
+    if (id_usuario == null) {
+        throw new Error("El id del usuario no puede ser nulo")
+    }
+
+    const query = "UPDATE Usuarios\
+                    SET nombre_completo = ?, cedula = ?, area_trabajo = ?, telefono = ?\
+                    WHERE id = ?;"
+    await pool.query(query, [nombre_completo, cedula, correo_electronico, area_trabajo, telefono, id_usuario])
+}
