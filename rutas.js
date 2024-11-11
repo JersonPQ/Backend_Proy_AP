@@ -34,7 +34,8 @@ import {
  // Configura body-parser como middleware
  app.use(bodyParser.json());
  
-
+ // Habilita CORS para todas las rutas
+ app.use(cors());
 
  // configuración de nodemailer
 const nodemailer = require('nodemailer');
@@ -77,8 +78,7 @@ function enviarCorreo(correo, asunto, mensaje) {
     }
 }
 
- // Habilita CORS para todas las rutas
- app.use(cors());
+
 
 app.get('/', (req, res) => {
     res.send('Proyecto de Administración de Proyectos');
