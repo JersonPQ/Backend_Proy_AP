@@ -37,6 +37,49 @@ import {
  // Habilita CORS para todas las rutas
  app.use(cors());
 
+ // configuración de nodemailer
+const nodemailer = require('nodemailer');
+
+// Configura el transporte de Nodemailer
+const transporter = nodemailer.createTransport({
+  host: 'smtp.zoho.com', // Servidor SMTP de tu proveedor
+  port: 587, // Puerto (usualmente 587 para TLS o 465 para SSL)
+  secure: false, // Usa `true` para SSL y `false` para TLS
+  auth: {
+    user: 'proyectoap24@zohomail.com', // Tu correo electrónico
+    pass: '9XZIBSLXItvkz9' // Tu contraseña
+  }
+});
+
+// Opciones del correo electrónico
+const mailOptions = {
+  from: 'proyectoap24@zohomail.com', // Remitente
+  to: '', // Destinatario
+  subject: '',
+  text: ''
+};
+
+// función para enviar correo
+function enviarCorreo(correo, asunto, mensaje) {
+    mailOptions.to = correo;
+    mailOptions.subject = asunto;
+    mailOptions.text = mensaje;
+    
+    try {
+        // Enviar el correo
+        transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log('Error al enviar correo:', error);
+        }
+            console.log('Correo enviado:', info.response);
+        });
+    } catch (error) {
+        console.log('Error al enviar correo:', error);
+    }
+}
+
+
+
 app.get('/', (req, res) => {
     res.send('Proyecto de Administración de Proyectos');
 })
@@ -179,6 +222,11 @@ app.post('/insertUsuario', async (req, res) => {
     try {
         const {nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol} = req.body;
         await insertUsuario(nombre_completo, cedula, correo_electronico, area_trabajo, cartera_digital, telefono, contrasena, rol);
+
+        // enviar correo de bienvenida
+        asunto = 'Bienvenido a ProInvest';
+        mensaje = 'Gracias por registrarte en ProInvest, ahora puedes empezar a invertir en los proyectos que desees';
+        enviarCorreo(correo_electronico, asunto, mensaje);
 
         res.status(200).send('Usuario insertado');
     } catch (error) {
