@@ -328,8 +328,8 @@ app.put('/updateCarteraDigitalUsuario', async (req, res) => {
 // actualizar los datos de un usuario
 app.put('/updateDatosUsuario', async (req, res) => {
     try {
-        const {id, nombre_completo, cedula, area_trabajo, telefono} = req.body;
-        await updateDatosUsuario(id, nombre_completo, cedula, area_trabajo, telefono);
+        const {id, nombre_completo, area_trabajo, telefono} = req.body;
+        await updateDatosUsuario(id, nombre_completo, area_trabajo, telefono);
 
         res.status(200).send('Datos actualizados');
     } catch (error) {
