@@ -27,7 +27,9 @@ import {
     activarCuentaUsuario,
     desactivarCuentaUsuario,
     updateCarteraDigitalUsuario,
-    updateDatosUsuario
+    updateDatosUsuario,
+    updateMentorUsuario,
+    quitarMentorUsuario
  } from './database.js'
 
  const app = express();

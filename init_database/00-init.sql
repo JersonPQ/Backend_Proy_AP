@@ -74,3 +74,6 @@ CREATE TABLE Notificaciones (
 
 /* añadir campo a tabla usuarios para saber si son mentores */
 ALTER TABLE Usuarios ADD COLUMN es_mentor BOOLEAN DEFAULT FALSE;
+
+/* modificar columna rol de la tabla usuarios para que el default sea 2 */
+ALTER TABLE Usuarios MODIFY COLUMN rol INT DEFAULT 2;
