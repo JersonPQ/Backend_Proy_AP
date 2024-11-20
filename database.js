@@ -23,7 +23,7 @@ export async function getRolUsuarios() {
 // **************** Usuarios ****************
 export async function getUsuarios() {
     const query = "SELECT id, nombre_completo, correo_electronico, area_trabajo,\
-                    cartera_digital, telefono, contrasena, fecha_registro, rol, estado\
+                    cartera_digital, telefono, contrasena, fecha_registro, rol, estado, es_mentor\
                     FROM Usuarios;"
     const [rows] = await pool.query(query)
     return rows
