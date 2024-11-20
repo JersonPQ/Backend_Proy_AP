@@ -71,3 +71,6 @@ CREATE TABLE Notificaciones (
     FOREIGN KEY (id_usuario) REFERENCES Usuarios(id) ON DELETE CASCADE,
     FOREIGN KEY (id_tipo_notificacion) REFERENCES TiposNotificaciones(id) ON DELETE CASCADE
 );
+
+/* añadir campo a tabla usuarios para saber si son mentores */
+ALTER TABLE Usuarios ADD COLUMN es_mentor BOOLEAN DEFAULT FALSE;

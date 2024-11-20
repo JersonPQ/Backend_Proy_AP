@@ -337,6 +337,30 @@ app.put('/updateDatosUsuario', async (req, res) => {
     }
 })
 
+// actualizar campo es_mentor para hacer mentor a usuario
+app.put('/updateMentorUsuario', async (req, res) => {
+    try {
+        const {id_usuario} = req.body;
+        await updateMentorUsuario(id_usuario);
+
+        res.status(200).send('Usuario actualizado');
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
+// actualizar campo es_mentor para quitar mentor a usuario
+app.put('/quitarMentorUsuario', async (req, res) => {
+    try {
+        const {id_usuario} = req.body;
+        await quitarMentorUsuario(id_usuario);
+
+        res.status(200).send('Usuario actualizado');
+    } catch (error) {
+        res.status(500).send('Error en el servidor - ' + error);
+    }
+})
+
 app.use((err, req, res, next) => {
     console.error(err.stack)
     res.status(500).send('Something broke!')

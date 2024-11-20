@@ -348,3 +348,39 @@ export async function updateDatosUsuario(id_usuario, nombre_completo, area_traba
                     WHERE id = ?;"
     await pool.query(query, [nombre_completo, area_trabajo, telefono, monto, id_usuario])
 }
+
+// actualizar campo es_mentor para hacer mentor a usuario
+export async function updateMentorUsuario(id_usuario) {
+    if (id_usuario == null) {
+        throw new Error("El id del usuario no puede ser nulo")
+    }
+
+    // validar que el usuario exista
+    const usuario = await getUsuarioById(id_usuario)
+    if (usuario.length == 0) {
+        throw new Error("El usuario no existe")
+    }
+
+    const query = "UPDATE Usuarios\
+                    SET es_mentor = TRUE\
+                    WHERE id = ?;"
+    await pool.query(query, [id_usuario])
+}
+
+// actualizar campo es_mentor para quitar mentor a usuario
+export async function updateNoMentorUsuario(id_usuario) {
+    if (id_usuario == null) {
+        throw new Error("El id del usuario no puede ser nulo")
+    }
+
+    // validar que el usuario exista
+    const usuario = await getUsuarioById(id_usuario)
+    if (usuario.length == 0) {
+        throw new Error("El usuario no existe")
+    }
+
+    const query = "UPDATE Usuarios\
+                    SET es_mentor = FALSE\
+                    WHERE id = ?;"
+    await pool.query(query, [id_usuario])
+}
