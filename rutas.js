@@ -29,7 +29,7 @@ import {
     updateCarteraDigitalUsuario,
     updateDatosUsuario,
     updateMentorUsuario,
-    quitarMentorUsuario
+    updateNoMentorUsuario
  } from './database.js'
 
  const app = express();
@@ -355,7 +355,7 @@ app.put('/updateMentorUsuario', async (req, res) => {
 app.put('/quitarMentorUsuario', async (req, res) => {
     try {
         const {id_usuario} = req.body;
-        await quitarMentorUsuario(id_usuario);
+        await updateNoMentorUsuario(id_usuario);
 
         res.status(200).send('Usuario actualizado');
     } catch (error) {
